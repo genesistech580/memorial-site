@@ -34,7 +34,6 @@
             position: relative;
         }
 
-        /* Using your uploaded Cemetery Image */
         body::before {
             content: "";
             position: fixed;
@@ -76,7 +75,6 @@
             margin-bottom: 30px; object-fit: cover;
         }
 
-        /* Candle Section using your specific candle image */
         .candle-box { 
             margin: 40px 0; padding: 20px;
             background: rgba(255, 255, 255, 0.02);
@@ -88,8 +86,7 @@
             filter: grayscale(100%) brightness(50%);
         }
         .custom-candle.lit {
-            filter: grayscale(0%) brightness(100%);
-            filter: drop-shadow(0 0 20px var(--candle-gold));
+            filter: grayscale(0%) brightness(100%) drop-shadow(0 0 20px var(--candle-gold));
         }
 
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 40px 0; }
@@ -137,7 +134,7 @@
         <button onclick="addMessage()">Share Tribute</button>
 
         <div id="messagesList" style="margin-top: 30px;">
-            </div>
+        </div>
     </div>
 </div>
 
@@ -145,11 +142,12 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
 
 <script>
-    // These are your actual keys from your screenshot
+    // Configuration updated with your Database URL
     const firebaseConfig = {
         apiKey: "AIzaSyDJH1VKYQCPEsGgHJe8Uq1-EVo_Dpug8-8",
         authDomain: "danny-memorial.firebaseapp.com",
         projectId: "danny-memorial",
+        databaseURL: "https://danny-memorial-default-rtdb.firebaseio.com", 
         storageBucket: "danny-memorial.firebasestorage.app",
         messagingSenderId: "829969488243",
         appId: "1:829969488243:web:48d4bd186bf9872fab4bc6",
@@ -167,7 +165,7 @@
 
     toggle.addEventListener('click', () => {
         if (audio.paused) {
-            audio.play();
+            audio.play().catch(e => console.log("Audio play failed:", e));
             statusText.innerText = "Music On";
         } else {
             audio.pause();
@@ -177,16 +175,19 @@
 
     // Save message to Firebase
     function addMessage() {
-        const name = document.getElementById('userName').value;
-        const msg = document.getElementById('userMsg').value;
+        const nameInput = document.getElementById('userName');
+        const msgInput = document.getElementById('userMsg');
+        const name = nameInput.value;
+        const msg = msgInput.value;
+        
         if(name.trim() && msg.trim()) {
             messagesRef.push({
                 name: name,
                 message: msg,
                 timestamp: Date.now()
             });
-            document.getElementById('userName').value = '';
-            document.getElementById('userMsg').value = '';
+            nameInput.value = '';
+            msgInput.value = '';
         }
     }
 

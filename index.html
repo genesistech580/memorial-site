@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>In Loving Memory | Daniel Owusu Boateng (Danny B)</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +34,6 @@
             position: relative;
         }
 
-        /* Funeral Background Image Overlay */
         body::before {
             content: "";
             position: fixed;
@@ -48,7 +46,6 @@
             z-index: -2;
         }
 
-        /* --- AUDIO PLAYER STYLING --- */
         .audio-player {
             position: fixed;
             top: 20px;
@@ -65,13 +62,14 @@
             cursor: pointer;
             transition: 0.3s;
         }
+
         .audio-player:hover { background: rgba(255, 255, 255, 0.15); }
-        .music-icon { font-size: 14px; color: var(--accent-slate); }
         .music-text { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: white; }
         .pulse {
             width: 8px; height: 8px; background: var(--candle-gold); border-radius: 50%;
             animation: musicPulse 2s infinite;
         }
+
         @keyframes musicPulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 179, 0, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(255, 179, 0, 0); }
@@ -93,7 +91,6 @@
             position: relative;
         }
 
-        /* Flower Accents */
         .flower-accent {
             position: absolute;
             width: 200px;
@@ -123,7 +120,6 @@
 
         .dates { color: var(--accent-slate); letter-spacing: 6px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
 
-        /* --- CANDLE BOX REFINED --- */
         .candle-box { 
             margin: 40px 0; padding: 40px; 
             background: radial-gradient(circle, rgba(255, 179, 0, 0.08) 0%, transparent 70%);
@@ -140,12 +136,10 @@
         .lit .flame { opacity: 1; animation: flicker 0.15s infinite alternate; }
         @keyframes flicker { from { transform: scale(1) rotate(-1deg); } to { transform: scale(1.1) rotate(1deg); } }
 
-        /* --- GALLERY --- */
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 40px 0; }
         .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; opacity: 0.6; transition: 0.6s; }
         .gallery img:hover { opacity: 1; transform: translateY(-5px); }
 
-        /* --- FORM & MESSAGES --- */
         .condolence-section { margin-top: 60px; text-align: left; }
         .condolence-section h3 { font-family: 'Playfair Display', serif; margin-bottom: 30px; text-align: center; }
         
@@ -165,11 +159,7 @@
         .msg-card { background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
         .msg-name { font-weight: 600; font-size: 0.8rem; color: var(--accent-slate); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
 
-        footer { margin-top: 80px; font-size: 0.7rem; color: #475569; letter-spacing: 4px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        /* Scrollbar */
-        .messages-list::-webkit-scrollbar { width: 3px; }
-        .messages-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        footer { margin-top: 80px; font-size: 0.7rem; color: #475569; letter-spacing: 4px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; width: 100%; }
 
         @media (max-width: 600px) { .container { padding: 50px 20px; } .audio-player { top: 10px; right: 10px; padding: 8px 14px; } }
     </style>
@@ -218,11 +208,7 @@
         <button onclick="addMessage()">Leave Tribute</button>
 
         <div class="messages-list" id="messagesList">
-            <div class="msg-card">
-                <p class="msg-name">Family & Friends</p>
-                <p class="msg-text">"You will always be remembered for your brilliant mind and kind spirit."</p>
             </div>
-        </div>
     </div>
 
     <footer>
@@ -230,8 +216,27 @@
     </footer>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
 <script>
-    // Audio Player Logic
+    // 1. ADD YOUR FIREBASE CONFIG HERE
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "YOUR_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const messagesRef = database.ref('condolences');
+
+    // Audio Logic
     const audio = document.getElementById('memorialMusic');
     const toggle = document.getElementById('audioToggle');
     const statusText = document.getElementById('statusText');
@@ -253,17 +258,26 @@
     function addMessage() {
         const name = document.getElementById('userName').value;
         const msg = document.getElementById('userMsg').value;
-        if(name && msg) {
-            const list = document.getElementById('messagesList');
-            const newMsg = document.createElement('div');
-            newMsg.className = 'msg-card';
-            newMsg.innerHTML = `<p class="msg-name">${name}</p><p class="msg-text">"${msg}"</p>`;
-            list.prepend(newMsg);
+        if(name.trim() && msg.trim()) {
+            messagesRef.push({
+                name: name,
+                message: msg,
+                timestamp: Date.now()
+            });
             document.getElementById('userName').value = '';
             document.getElementById('userMsg').value = '';
-            newMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }
+
+    // Load messages in real-time
+    messagesRef.on('child_added', (snapshot) => {
+        const data = snapshot.val();
+        const list = document.getElementById('messagesList');
+        const newMsg = document.createElement('div');
+        newMsg.className = 'msg-card';
+        newMsg.innerHTML = `<p class="msg-name">${data.name}</p><p class="msg-text">"${data.message}"</p>`;
+        list.prepend(newMsg);
+    });
 </script>
 
 </body>

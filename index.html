@@ -34,140 +34,84 @@
             position: relative;
         }
 
+        /* Using your uploaded Cemetery Image */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(5, 8, 16, 0.6), rgba(5, 8, 16, 0.9)), 
-                        url('background-funeral.jpg'); 
+            background: linear-gradient(to bottom, rgba(5, 8, 16, 0.5), rgba(5, 8, 16, 0.9)), 
+                        url('image_e383e6.jpg'); 
             background-size: cover;
             background-position: center;
-            filter: blur(5px);
+            filter: blur(3px);
             z-index: -2;
         }
 
         .audio-player {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
+            top: 20px; right: 20px; z-index: 100;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            padding: 10px 20px; border-radius: 50px;
+            display: flex; align-items: center; gap: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .audio-player:hover { background: rgba(255, 255, 255, 0.15); }
-        .music-text { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: white; }
-        .pulse {
-            width: 8px; height: 8px; background: var(--candle-gold); border-radius: 50%;
-            animation: musicPulse 2s infinite;
-        }
-
-        @keyframes musicPulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 179, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 179, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 179, 0, 0); }
         }
 
         .container {
-            max-width: 750px;
-            width: 100%;
+            max-width: 750px; width: 100%;
             background: var(--glass);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 40px;
-            padding: 80px 40px;
-            margin: 60px 0;
+            padding: 60px 40px; margin: 60px 0;
             text-align: center;
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
-            position: relative;
         }
-
-        .flower-accent {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            opacity: 0.12;
-            pointer-events: none;
-        }
-        .top-left { top: -40px; left: -40px; }
-        .bottom-right { bottom: -40px; right: -40px; transform: rotate(180deg); }
 
         .profile {
             width: 180px; height: 180px;
             border-radius: 50%;
             border: 5px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 30px;
-            object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 7vw, 3rem);
-            margin-bottom: 12px;
-            background: linear-gradient(to bottom, #ffffff, #94a3b8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 30px; object-fit: cover;
         }
 
-        .dates { color: var(--accent-slate); letter-spacing: 6px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
-
+        /* Candle Section using your specific candle image */
         .candle-box { 
-            margin: 40px 0; padding: 40px; 
-            background: radial-gradient(circle, rgba(255, 179, 0, 0.08) 0%, transparent 70%);
-            border-radius: 30px; 
+            margin: 40px 0; padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
         }
-        .candle-container { width: 60px; height: 120px; margin: 0 auto; cursor: pointer; position: relative; }
-        .wax { width: 40px; height: 80px; background: linear-gradient(to right, #e2e8f0, #94a3b8); margin: 0 auto; border-radius: 6px; position: relative; top: 12px; }
-        .wick { width: 2px; height: 14px; background: #1e293b; margin: 0 auto; position: relative; top: 15px; }
-        .flame {
-            width: 22px; height: 35px; background: #ffa000; border-radius: 50% 50% 20% 20%;
-            position: absolute; top: -15px; left: 19px; opacity: 0; transition: 0.8s ease;
-            box-shadow: 0 0 30px #ffb300, 0 0 60px #f59e0b;
+        .custom-candle {
+            width: 100%; max-width: 300px;
+            margin: 0 auto; cursor: pointer; transition: 0.5s;
+            filter: grayscale(100%) brightness(50%);
         }
-        .lit .flame { opacity: 1; animation: flicker 0.15s infinite alternate; }
-        @keyframes flicker { from { transform: scale(1) rotate(-1deg); } to { transform: scale(1.1) rotate(1deg); } }
+        .custom-candle.lit {
+            filter: grayscale(0%) brightness(100%);
+            filter: drop-shadow(0 0 20px var(--candle-gold));
+        }
 
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 40px 0; }
-        .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; opacity: 0.6; transition: 0.6s; }
-        .gallery img:hover { opacity: 1; transform: translateY(-5px); }
+        .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; opacity: 0.7; }
 
         .condolence-section { margin-top: 60px; text-align: left; }
-        .condolence-section h3 { font-family: 'Playfair Display', serif; margin-bottom: 30px; text-align: center; }
-        
         input, textarea {
             width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px; padding: 16px; color: white; font-family: 'Inter', sans-serif;
-            margin-bottom: 15px; transition: 0.3s;
+            border-radius: 15px; padding: 16px; color: white; margin-bottom: 15px;
         }
         button {
             width: 100%; padding: 16px; border-radius: 15px; border: none;
-            background: white; color: #0f172a; font-weight: 600; cursor: pointer; transition: 0.4s;
-            text-transform: uppercase; letter-spacing: 2px;
+            background: white; color: #0f172a; font-weight: 600; cursor: pointer;
         }
-        button:hover { background: var(--accent-slate); transform: translateY(-2px); }
 
-        .messages-list { margin-top: 40px; max-height: 400px; overflow-y: auto; padding-right: 15px; }
-        .msg-card { background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
-        .msg-name { font-weight: 600; font-size: 0.8rem; color: var(--accent-slate); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-
-        footer { margin-top: 80px; font-size: 0.7rem; color: #475569; letter-spacing: 4px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; width: 100%; }
-
-        @media (max-width: 600px) { .container { padding: 50px 20px; } .audio-player { top: 10px; right: 10px; padding: 8px 14px; } }
+        .msg-card { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .msg-name { font-weight: 600; color: var(--accent-slate); font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase;}
     </style>
 </head>
 <body>
 
 <div class="audio-player" id="audioToggle">
-    <div class="pulse" id="pulseIndicator"></div>
     <span class="music-text" id="statusText">Play Music</span>
     <audio id="memorialMusic" loop>
         <source src="memorial-audio.mp3" type="audio/mpeg">
@@ -175,86 +119,63 @@
 </div>
 
 <div class="container">
-    <svg class="flower-accent top-left" viewBox="0 0 100 100">
-        <path fill="white" d="M50 50c0-15 10-25 25-25s25 10 25 25-10 25-25 25-25-10-25-25z" opacity="0.4"/>
-        <path fill="white" d="M50 50c-15 0-25-10-25-25s10-25 25-25 25 10 25 25-10 25-25 25z" opacity="0.5"/>
-    </svg>
-
     <header>
         <img src="photo.jpg" alt="Daniel Owusu Boateng" class="profile">
-        <h1>Daniel Owusu Boateng</h1>
-        <p class="dates">2002 — 2026</p>
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Daniel Owusu Boateng</h1>
+        <p style="letter-spacing: 5px; color: var(--accent-slate);">2002 — 2026</p>
     </header>
 
     <div class="candle-box">
-        <p style="font-size: 0.75rem; color: var(--accent-slate); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">Light a candle in his memory</p>
-        <div class="candle-container" id="candle" onclick="this.classList.toggle('lit')">
-            <div class="flame"></div>
-            <div class="wick"></div>
-            <div class="wax"></div>
-        </div>
-    </div>
-
-    <div class="gallery">
-        <img src="img1.jpg" alt="Memory 1">
-        <img src="img2.jpg" alt="Memory 2">
-        <img src="img3.jpg" alt="Memory 3">
+        <p style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 10px; color: var(--accent-slate);">TAP TO LIGHT A CANDLE</p>
+        <img src="image_e380a5.png" class="custom-candle" id="candleImg" onclick="this.classList.toggle('lit')">
     </div>
 
     <div class="condolence-section">
-        <h3>Condolence Book</h3>
+        <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Condolence Book</h3>
         <input type="text" id="userName" placeholder="Your Name">
-        <textarea id="userMsg" rows="4" placeholder="Your message..."></textarea>
-        <button onclick="addMessage()">Leave Tribute</button>
+        <textarea id="userMsg" rows="3" placeholder="Write a tribute..."></textarea>
+        <button onclick="addMessage()">Share Tribute</button>
 
-        <div class="messages-list" id="messagesList">
+        <div id="messagesList" style="margin-top: 30px;">
             </div>
     </div>
-
-    <footer>
-        FOREVER IN OUR HEARTS • REST IN PEACE DANNY
-    </footer>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
 
 <script>
-    // 1. ADD YOUR FIREBASE CONFIG HERE
+    // These are your actual keys from your screenshot
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-        projectId: "YOUR_PROJECT",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "YOUR_ID",
-        appId: "YOUR_APP_ID"
+        apiKey: "AIzaSyDJH1VKYQCPEsGgHJe8Uq1-EVo_Dpug8-8",
+        authDomain: "danny-memorial.firebaseapp.com",
+        projectId: "danny-memorial",
+        storageBucket: "danny-memorial.firebasestorage.app",
+        messagingSenderId: "829969488243",
+        appId: "1:829969488243:web:48d4bd186bf9872fab4bc6",
+        measurementId: "G-J1ETW95XN8"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
-    const messagesRef = database.ref('condolences');
+    const messagesRef = database.ref('tributes');
 
     // Audio Logic
     const audio = document.getElementById('memorialMusic');
     const toggle = document.getElementById('audioToggle');
     const statusText = document.getElementById('statusText');
-    const pulse = document.getElementById('pulseIndicator');
 
     toggle.addEventListener('click', () => {
         if (audio.paused) {
             audio.play();
             statusText.innerText = "Music On";
-            pulse.style.animation = "musicPulse 1.5s infinite";
         } else {
             audio.pause();
             statusText.innerText = "Music Off";
-            pulse.style.animation = "none";
         }
     });
 
-    // Message Logic
+    // Save message to Firebase
     function addMessage() {
         const name = document.getElementById('userName').value;
         const msg = document.getElementById('userMsg').value;
@@ -269,14 +190,14 @@
         }
     }
 
-    // Load messages in real-time
+    // Pull messages from Firebase in real-time
     messagesRef.on('child_added', (snapshot) => {
         const data = snapshot.val();
         const list = document.getElementById('messagesList');
-        const newMsg = document.createElement('div');
-        newMsg.className = 'msg-card';
-        newMsg.innerHTML = `<p class="msg-name">${data.name}</p><p class="msg-text">"${data.message}"</p>`;
-        list.prepend(newMsg);
+        const card = document.createElement('div');
+        card.className = 'msg-card';
+        card.innerHTML = `<p class="msg-name">${data.name}</p><p class="msg-text">"${data.message}"</p>`;
+        list.prepend(card);
     });
 </script>
 

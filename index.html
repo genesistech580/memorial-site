@@ -1,205 +1,204 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>In Loving Memory | Daniel Owusu Boateng (Danny B)</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Loving Memory | Daniel Owusu Boateng (Danny B)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --bg-deep: #050810;
-            --accent-slate: #94a3b8;
-            --text-main: #f8fafc;
-            --glass: rgba(10, 15, 26, 0.85);
-            --candle-gold: #ffb300;
-        }
+    <style>
+        :root {
+            --bg-deep: #050810;
+            --accent-slate: #94a3b8;
+            --text-main: #f8fafc;
+            --glass: rgba(10, 15, 26, 0.85);
+            --candle-gold: #ffb300;
+        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
-        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(5, 8, 16, 0.5), rgba(5, 8, 16, 0.9)), 
-                        url('image_e383e6.jpg'); 
-            background-size: cover;
-            background-position: center;
-            filter: blur(3px);
-            z-index: -2;
-        }
+        /* Using your uploaded Cemetery Image */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(5, 8, 16, 0.5), rgba(5, 8, 16, 0.9)), 
+                        url('image_e383e6.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);
+            z-index: -2;
+        }
 
-        .audio-player {
-            position: fixed;
-            top: 20px; right: 20px; z-index: 100;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px; border-radius: 50px;
-            display: flex; align-items: center; gap: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-        }
+        .audio-player {
+            position: fixed;
+            top: 20px; right: 20px; z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px; border-radius: 50px;
+            display: flex; align-items: center; gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
 
-        .container {
-            max-width: 750px; width: 100%;
-            background: var(--glass);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 40px;
-            padding: 60px 40px; margin: 60px 0;
-            text-align: center;
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
-        }
+        .container {
+            max-width: 750px; width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 60px 40px; margin: 60px 0;
+            text-align: center;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        }
 
-        .profile {
-            width: 180px; height: 180px;
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 30px; object-fit: cover;
-        }
+        .profile {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 30px; object-fit: cover;
+        }
 
-        .candle-box { 
-            margin: 40px 0; padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 20px;
-        }
-        .custom-candle {
-            width: 100%; max-width: 300px;
-            margin: 0 auto; cursor: pointer; transition: 0.5s;
-            filter: grayscale(100%) brightness(50%);
-        }
-        .custom-candle.lit {
-            filter: grayscale(0%) brightness(100%) drop-shadow(0 0 20px var(--candle-gold));
-        }
+        /* Candle Section using your specific candle image */
+        .candle-box { 
+            margin: 40px 0; padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+        }
+        .custom-candle {
+            width: 100%; max-width: 300px;
+            margin: 0 auto; cursor: pointer; transition: 0.5s;
+            filter: grayscale(100%) brightness(50%);
+        }
+        .custom-candle.lit {
+            filter: grayscale(0%) brightness(100%);
+            filter: drop-shadow(0 0 20px var(--candle-gold));
+        }
 
-        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 40px 0; }
-        .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; opacity: 0.7; }
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 40px 0; }
+        .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; opacity: 0.7; }
 
-        .condolence-section { margin-top: 60px; text-align: left; }
-        input, textarea {
-            width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px; padding: 16px; color: white; margin-bottom: 15px;
-        }
-        button {
-            width: 100%; padding: 16px; border-radius: 15px; border: none;
-            background: white; color: #0f172a; font-weight: 600; cursor: pointer;
-        }
+        .condolence-section { margin-top: 60px; text-align: left; }
+        input, textarea {
+            width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px; padding: 16px; color: white; margin-bottom: 15px;
+        }
+        button {
+            width: 100%; padding: 16px; border-radius: 15px; border: none;
+            background: white; color: #0f172a; font-weight: 600; cursor: pointer;
+        }
 
-        .msg-card { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .msg-name { font-weight: 600; color: var(--accent-slate); font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase;}
-    </style>
+        .msg-card { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .msg-name { font-weight: 600; color: var(--accent-slate); font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase;}
+    </style>
 </head>
 <body>
 
 <div class="audio-player" id="audioToggle">
-    <span class="music-text" id="statusText">Play Music</span>
-    <audio id="memorialMusic" loop>
-        <source src="memorial-audio.mp3" type="audio/mpeg">
-    </audio>
+    <span class="music-text" id="statusText">Play Music</span>
+    <audio id="memorialMusic" loop>
+        <source src="memorial-audio.mp3" type="audio/mpeg">
+    </audio>
 </div>
 
 <div class="container">
-    <header>
-        <img src="photo.jpg" alt="Daniel Owusu Boateng" class="profile">
-        <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Daniel Owusu Boateng</h1>
-        <p style="letter-spacing: 5px; color: var(--accent-slate);">2002 — 2026</p>
-    </header>
+    <header>
+        <img src="photo.jpg" alt="Daniel Owusu Boateng" class="profile">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Daniel Owusu Boateng</h1>
+        <p style="letter-spacing: 5px; color: var(--accent-slate);">2002 — 2026</p>
+    </header>
 
-    <div class="candle-box">
-        <p style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 10px; color: var(--accent-slate);">TAP TO LIGHT A CANDLE</p>
-        <img src="image_e380a5.png" class="custom-candle" id="candleImg" onclick="this.classList.toggle('lit')">
-    </div>
+    <div class="candle-box">
+        <p style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 10px; color: var(--accent-slate);">TAP TO LIGHT A CANDLE</p>
+        <img src="image_e380a5.png" class="custom-candle" id="candleImg" onclick="this.classList.toggle('lit')">
+    </div>
 
-    <div class="condolence-section">
-        <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Condolence Book</h3>
-        <input type="text" id="userName" placeholder="Your Name">
-        <textarea id="userMsg" rows="3" placeholder="Write a tribute..."></textarea>
-        <button onclick="addMessage()">Share Tribute</button>
+    <div class="condolence-section">
+        <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Condolence Book</h3>
+        <input type="text" id="userName" placeholder="Your Name">
+        <textarea id="userMsg" rows="3" placeholder="Write a tribute..."></textarea>
+        <button onclick="addMessage()">Share Tribute</button>
 
-        <div id="messagesList" style="margin-top: 30px;">
-        </div>
-    </div>
+        <div id="messagesList" style="margin-top: 30px;">
+            </div>
+    </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
 
 <script>
-    // Configuration updated with your Database URL
-    const firebaseConfig = {
-        apiKey: "AIzaSyDJH1VKYQCPEsGgHJe8Uq1-EVo_Dpug8-8",
-        authDomain: "danny-memorial.firebaseapp.com",
-        projectId: "danny-memorial",
-        databaseURL: "https://danny-memorial-default-rtdb.firebaseio.com", 
-        storageBucket: "danny-memorial.firebasestorage.app",
-        messagingSenderId: "829969488243",
-        appId: "1:829969488243:web:48d4bd186bf9872fab4bc6",
-        measurementId: "G-J1ETW95XN8"
-    };
+    // These are your actual keys from your screenshot
+    const firebaseConfig = {
+        apiKey: "AIzaSyDJH1VKYQCPEsGgHJe8Uq1-EVo_Dpug8-8",
+        authDomain: "danny-memorial.firebaseapp.com",
+        projectId: "danny-memorial",
+        storageBucket: "danny-memorial.firebasestorage.app",
+        messagingSenderId: "829969488243",
+        appId: "1:829969488243:web:48d4bd186bf9872fab4bc6",
+        measurementId: "G-J1ETW95XN8"
+    };
 
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-    const messagesRef = database.ref('tributes');
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const messagesRef = database.ref('tributes');
 
-    // Audio Logic
-    const audio = document.getElementById('memorialMusic');
-    const toggle = document.getElementById('audioToggle');
-    const statusText = document.getElementById('statusText');
+    // Audio Logic
+    const audio = document.getElementById('memorialMusic');
+    const toggle = document.getElementById('audioToggle');
+    const statusText = document.getElementById('statusText');
 
-    toggle.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play().catch(e => console.log("Audio play failed:", e));
-            statusText.innerText = "Music On";
-        } else {
-            audio.pause();
-            statusText.innerText = "Music Off";
-        }
-    });
+    toggle.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            statusText.innerText = "Music On";
+        } else {
+            audio.pause();
+            statusText.innerText = "Music Off";
+        }
+    });
 
-    // Save message to Firebase
-    function addMessage() {
-        const nameInput = document.getElementById('userName');
-        const msgInput = document.getElementById('userMsg');
-        const name = nameInput.value;
-        const msg = msgInput.value;
-        
-        if(name.trim() && msg.trim()) {
-            messagesRef.push({
-                name: name,
-                message: msg,
-                timestamp: Date.now()
-            });
-            nameInput.value = '';
-            msgInput.value = '';
-        }
-    }
+    // Save message to Firebase
+    function addMessage() {
+        const name = document.getElementById('userName').value;
+        const msg = document.getElementById('userMsg').value;
+        if(name.trim() && msg.trim()) {
+            messagesRef.push({
+                name: name,
+                message: msg,
+                timestamp: Date.now()
+            });
+            document.getElementById('userName').value = '';
+            document.getElementById('userMsg').value = '';
+        }
+    }
 
-    // Pull messages from Firebase in real-time
-    messagesRef.on('child_added', (snapshot) => {
-        const data = snapshot.val();
-        const list = document.getElementById('messagesList');
-        const card = document.createElement('div');
-        card.className = 'msg-card';
-        card.innerHTML = `<p class="msg-name">${data.name}</p><p class="msg-text">"${data.message}"</p>`;
-        list.prepend(card);
-    });
+    // Pull messages from Firebase in real-time
+    messagesRef.on('child_added', (snapshot) => {
+        const data = snapshot.val();
+        const list = document.getElementById('messagesList');
+        const card = document.createElement('div');
+        card.className = 'msg-card';
+        card.innerHTML = `<p class="msg-name">${data.name}</p><p class="msg-text">"${data.message}"</p>`;
+        list.prepend(card);
+    });
 </script>
 
 </body>
